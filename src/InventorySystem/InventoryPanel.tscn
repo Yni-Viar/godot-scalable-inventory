@@ -1,0 +1,110 @@
+[gd_scene load_steps=6 format=3 uid="uid://c08254hw74vd5"]
+
+[ext_resource type="Texture2D" uid="uid://cywfpox1qgvpo" path="res://InventorySystem/InventoryItemBackground.png" id="1_vlxsh"]
+[ext_resource type="Script" path="res://InventorySystem/InventoryManagement.gd" id="1_yykdm"]
+[ext_resource type="Resource" uid="uid://ct7jbvbfedfef" path="res://InventorySystem/Items/Items.tres" id="2_ji34w"]
+[ext_resource type="Script" path="res://InventorySystem/Test.gd" id="3_1nmcc"]
+[ext_resource type="Script" path="res://InventorySystem/InventoryPanel.gd" id="4_ss8mb"]
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yykdm")
+item_res_path = ExtResource("2_ji34w")
+
+[node name="InventoryPanel" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.494
+anchor_right = 0.5
+anchor_bottom = 0.494
+offset_left = -64.0
+offset_top = -64.112
+offset_right = 64.0
+offset_bottom = 63.888
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_vlxsh")
+script = ExtResource("4_ss8mb")
+
+[node name="AddItem" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.854
+anchor_top = 0.444
+anchor_right = 0.854
+anchor_bottom = 0.444
+offset_left = -79.808
+offset_top = -23.712
+offset_right = 80.192
+offset_bottom = 23.288
+text = "Add small_item"
+script = ExtResource("3_1nmcc")
+
+[node name="AddItem2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.854
+anchor_top = 0.641
+anchor_right = 0.854
+anchor_bottom = 0.641
+offset_left = -79.808
+offset_top = -23.368
+offset_right = 80.192
+offset_bottom = 23.632
+text = "Add big_item"
+script = ExtResource("3_1nmcc")
+item_index = 1
+
+[node name="DockPanel" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.796
+anchor_right = 0.5
+anchor_bottom = 0.796
+offset_left = -64.0
+offset_top = -67.808
+offset_right = 64.0
+offset_bottom = 60.192
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.314
+anchor_right = 0.5
+anchor_bottom = 0.314
+offset_left = -64.0
+offset_top = -11.472
+offset_right = 65.0
+offset_bottom = 11.528
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your inventory"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.314
+anchor_right = 0.5
+anchor_bottom = 0.314
+offset_left = -64.0
+offset_top = 204.528
+offset_right = 64.0
+offset_bottom = 227.528
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loot"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="AddItem" to="AddItem" method="_on_pressed"]
+[connection signal="pressed" from="AddItem2" to="AddItem2" method="_on_pressed"]

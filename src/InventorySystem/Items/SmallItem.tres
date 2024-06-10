@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b5yg7g3px168a"]
+
+[ext_resource type="Script" path="res://InventorySystem/Items/Item.gd" id="1_3otqs"]
+[ext_resource type="Texture2D" uid="uid://o3xoown2oeuc" path="res://InventorySystem/Items/Res/test0.png" id="2_cejjs"]
+
+[resource]
+script = ExtResource("1_3otqs")
+id = 0
+name = "Small Item"
+texture = ExtResource("2_cejjs")
+size = Vector2i(1, 1)
+pickable_path = ""
+pickup_sound_path = ""
+first_person_prefab_path = ""
+one_time_use = false
+upgrade_rough = Array[int]([])
+upgrade_coarse = Array[int]([])
+upgrade_one_to_one = Array[int]([])
+upgrade_fine = Array[int]([])
+upgrade_very_fine = Array[int]([])
