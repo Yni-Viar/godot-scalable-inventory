@@ -1,6 +1,9 @@
 extends TextureRect
+## Inventory slot
+## Made by Yni, licensed under Unlicense.
 class_name InventorySlot
 
+## Item ID
 @export var item_id: int
 ## Checks, if the item is ACTUALLY put in the inventory, and is not in the dock
 var first_start: bool = true

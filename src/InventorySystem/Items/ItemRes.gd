@@ -1,4 +1,5 @@
 extends Resource
+## Made by Yni, licensed under Unlicense.
 class_name ItemRes
 
 
