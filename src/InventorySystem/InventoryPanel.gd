@@ -1,4 +1,4 @@
-extends TextureRect
+extends Panel
 ## Inventory panel.
 ## Made by Yni, licensed under Unlicense.
 
