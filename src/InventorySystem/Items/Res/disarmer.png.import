@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccs40bogcipra"
-path="res://.godot/imported/InventoryItemLarge.png-da56edb77e11b6b88bbd3fc8b2e010df.ctex"
+uid="uid://b1okrwn1wfolr"
+path="res://.godot/imported/disarmer.png-f9417d0131e8abadb4e5a1fea3cda81c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://InventorySystem/InventoryItemLarge.png"
-dest_files=["res://.godot/imported/InventoryItemLarge.png-da56edb77e11b6b88bbd3fc8b2e010df.ctex"]
+source_file="res://InventorySystem/Items/Res/disarmer.png"
+dest_files=["res://.godot/imported/disarmer.png-f9417d0131e8abadb4e5a1fea3cda81c.ctex"]
 
 [params]
 

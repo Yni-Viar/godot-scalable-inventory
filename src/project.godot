@@ -12,9 +12,15 @@ config_version=5
 
 config/name="Godot Tile Inventory"
 config/tags=PackedStringArray("inventory", "template")
-run/main_scene="res://InventorySystem/InventoryPanel.tscn"
+run/main_scene="res://InventorySystem/StorageInventory/InventorySpace.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.png"
+
+[file_customization]
+
+folder_colors={
+"res://InventorySystem/": "yellow"
+}
 
 [input]
 

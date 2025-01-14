@@ -1,6 +1,9 @@
 extends Panel
 ## Inventory panel.
 ## Made by Yni, licensed under Unlicense.
+class_name InventorySpace
+
+@export var max_items: Vector2i = Vector2i(4, 4)
 
 # Called when the node enters the scene tree for the first time.
 #func _ready():

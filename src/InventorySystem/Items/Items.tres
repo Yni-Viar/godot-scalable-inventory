@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="ItemRes" load_steps=4 format=3 uid="uid://ct7jbvbfedfef"]
+[gd_resource type="Resource" script_class="ItemRes" load_steps=6 format=3 uid="uid://ct7jbvbfedfef"]
 
+[ext_resource type="Script" path="res://InventorySystem/Items/Item.gd" id="1_i02hd"]
 [ext_resource type="Resource" uid="uid://b5yg7g3px168a" path="res://InventorySystem/Items/SmallItem.tres" id="1_kr5q5"]
 [ext_resource type="Script" path="res://InventorySystem/Items/ItemRes.gd" id="1_m5mtg"]
 [ext_resource type="Resource" uid="uid://dqd5j5hc2ur27" path="res://InventorySystem/Items/LargeItem.tres" id="2_mkuib"]
+[ext_resource type="Resource" uid="uid://ccgr3lh4u7jg0" path="res://InventorySystem/Items/HighItem.tres" id="4_toc5d"]
 
 [resource]
 script = ExtResource("1_m5mtg")
-items = Array[Resource("res://InventorySystem/Items/Item.gd")]([ExtResource("1_kr5q5"), ExtResource("2_mkuib")])
+items = Array[ExtResource("1_i02hd")]([ExtResource("1_kr5q5"), ExtResource("2_mkuib"), ExtResource("4_toc5d")])

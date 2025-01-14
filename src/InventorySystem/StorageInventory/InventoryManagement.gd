@@ -39,19 +39,20 @@ func _ready():
 
 #@rpc("any_peer", "call_local")
 ## Adds item to loot storage
-func add_item(item_id: int):
+func add_item(item_id: int) -> InventorySlot:
 	if item_counter >= max_items_outside_inventory:
 		return
 	else:
 		item_counter += 1
 	var item: Item = item_res_path.items[item_id]
 	var item_prefab: InventorySlot = InventorySlot.new()
-	item_prefab.global_position = $DockPanel.global_position
+	item_prefab.global_position = Vector2(-16, -16)
 	item_prefab.item_id = item.id
-	item_prefab.texture = item.texture
+	item_prefab.texture = item.texture_tiled
 	item_prefab.mouse_filter = Control.MOUSE_FILTER_STOP
 	item_prefab.connect("gui_input", Callable(self, "on_gui_input").bind(item_prefab))
 	add_child(item_prefab, true)
+	return item_prefab
 ## Handles selecting and removing items
 func on_gui_input(event: InputEvent, prefab: InventorySlot):
 	if event.is_action_pressed("inventory_select"):
@@ -81,24 +82,28 @@ func on_gui_input(event: InputEvent, prefab: InventorySlot):
 	
 	if event.is_action_released("inventory_remove_item"):
 		remove_item(prefab.get_path(), true)
-## Moves item to the inventory or cheange position inside inventory.
-func item_move(item: InventorySlot, pos: Vector2):
-	if item.first_start:
+## Moves item to the inventory or change position inside inventory.
+func item_move(item: InventorySlot, pos: Vector2) -> bool:
+	var status: bool = true
+	item.position = ($InventoryPanel.global_position + pos).snapped(tile_size)
+	if !$InventoryPanel.get_rect().intersection(item.get_rect()) == item.get_rect():
+		item.position = item_prev_position
+		status = false
+	for item_check in items_array:
+		if item_check.name != item.name:
+			if item_check.get_rect().intersects(item.get_rect()):
+				item.position = item_prev_position
+				status = false
+	if item.first_start && status:
 		item_counter -= 1
 		items_array.append(item)
 		item_added.emit(item.item_id)
 		item.first_start = false
-	item.position = ($InventoryPanel.global_position + pos).snapped(tile_size)
-	if !$InventoryPanel.get_rect().intersection(item.get_rect()) == item.get_rect():
-		item.position = item_prev_position
-	for item_check in items_array:
-		if item_check.name != item.name:
-			if item_check.get_rect().intersection(item.get_rect()) == item.get_rect():
-				item.position = item_prev_position
 	item_prev_position = Vector2.ZERO
+	return status
 ## Removes item and calls signal (e.g. for dropping item on the ground)
-@rpc("any_peer", "call_local")
-func remove_item(prefab_path: String, spawn_item: bool):
+#@rpc("any_peer", "call_local")
+func remove_item(prefab_path: String, spawn_item: bool) -> void:
 	var prefab = get_node(prefab_path)
 	prefab.disconnect("gui_input", Callable(self, "on_gui_input").bind(prefab))
 	#if spawn_item:
@@ -109,7 +114,7 @@ func remove_item(prefab_path: String, spawn_item: bool):
 	items_array.erase(prefab)
 	prefab.queue_free()
 ## Helper function, for removing item by it's index, dependent on remove_item function
-func remove_item_by_index(index: int, spawn_item: bool):
+func remove_item_by_index(index: int, spawn_item: bool) -> void:
 	var item: Item = item_res_path.items[index]
 	for node in get_children():
 		if "item_id" in node:

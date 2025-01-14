@@ -7,12 +7,13 @@
 script = ExtResource("1_3otqs")
 id = 0
 name = "Small Item"
-texture = ExtResource("2_cejjs")
-size = Vector2i(1, 1)
+texture_tiled = ExtResource("2_cejjs")
+texture_slot = ExtResource("2_cejjs")
 pickable_path = ""
 pickup_sound_path = ""
-first_person_prefab_path = ""
+size = Vector2i(1, 1)
 one_time_use = false
+usage = 0
 upgrade_rough = Array[int]([])
 upgrade_coarse = Array[int]([])
 upgrade_one_to_one = Array[int]([])
