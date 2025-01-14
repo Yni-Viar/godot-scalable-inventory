@@ -16,8 +16,6 @@ signal item_removed(item_id: int)
 @export var max_items_outside_inventory = 4
 ## Path to item DB (replace with your own value)
 var item_res_path: ItemRes
-## Counts items outside inventory
-var item_counter: int = 0
 ## Items array
 var items_array: Array[TextureRect] = []
 ## Item is selected check
@@ -39,20 +37,25 @@ func _ready():
 
 #@rpc("any_peer", "call_local")
 ## Adds item to loot storage
-func add_item(item_id: int) -> InventorySlot:
-	if item_counter >= max_items_outside_inventory:
-		return
-	else:
-		item_counter += 1
+func add_item(item_id: int) -> void:
 	var item: Item = item_res_path.items[item_id]
 	var item_prefab: InventorySlot = InventorySlot.new()
+	# Temp position
 	item_prefab.global_position = Vector2(-16, -16)
 	item_prefab.item_id = item.id
 	item_prefab.texture = item.texture_tiled
 	item_prefab.mouse_filter = Control.MOUSE_FILTER_STOP
 	item_prefab.connect("gui_input", Callable(self, "on_gui_input").bind(item_prefab))
-	add_child(item_prefab, true)
-	return item_prefab
+	$InventoryPanel.add_child(item_prefab, true)
+	# Place item in prefab
+	for i in range($InventoryPanel.max_items.x):
+		for j in range($InventoryPanel.max_items.y):
+			if item_move(item_prefab, Vector2(tile_size.x * i + 8, tile_size.y * j + 8)):
+				return
+	# If there is no place - no item will be picked
+	item_prefab.queue_free()
+
+
 ## Handles selecting and removing items
 func on_gui_input(event: InputEvent, prefab: InventorySlot):
 	if event.is_action_pressed("inventory_select"):
@@ -85,17 +88,19 @@ func on_gui_input(event: InputEvent, prefab: InventorySlot):
 ## Moves item to the inventory or change position inside inventory.
 func item_move(item: InventorySlot, pos: Vector2) -> bool:
 	var status: bool = true
-	item.position = ($InventoryPanel.global_position + pos).snapped(tile_size)
-	if !$InventoryPanel.get_rect().intersection(item.get_rect()) == item.get_rect():
+	item.position = pos.snapped(tile_size)
+	# If item outside inventory borders - reset to initial position
+	if !$InventoryPanel.get_rect().intersection(item.get_global_rect()) == item.get_global_rect():
 		item.position = item_prev_position
 		status = false
+	# If item intersets with items - reset to initial position
 	for item_check in items_array:
 		if item_check.name != item.name:
 			if item_check.get_rect().intersects(item.get_rect()):
 				item.position = item_prev_position
 				status = false
+	# Add item signal
 	if item.first_start && status:
-		item_counter -= 1
 		items_array.append(item)
 		item_added.emit(item.item_id)
 		item.first_start = false

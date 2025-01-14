@@ -1,10 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://de8sgghqvldw3"]
+[gd_scene load_steps=5 format=3 uid="uid://de8sgghqvldw3"]
 
 [ext_resource type="Script" path="res://InventorySystem/StorageInventory/InventoryManagement.gd" id="1_ofdvd"]
 [ext_resource type="Script" path="res://InventorySystem/StorageInventory/InventorySpace.gd" id="2_5nrmb"]
 [ext_resource type="Script" path="res://InventorySystem/Test.gd" id="3_cxk41"]
-[ext_resource type="Script" path="res://InventorySystem/MiniInventory/InventoryUI.gd" id="4_4f5k2"]
-[ext_resource type="Script" path="res://InventorySystem/MiniInventory/Inventory.gd" id="5_7m7qb"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5oml0"]
 bg_color = Color(0, 0, 0, 0.752941)
@@ -30,14 +28,14 @@ script = ExtResource("1_ofdvd")
 [node name="InventoryPanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.667
-anchor_top = 0.444
-anchor_right = 0.667
-anchor_bottom = 0.444
-offset_left = -200.384
-offset_top = -199.712
-offset_right = 199.616
-offset_bottom = 200.288
+anchor_left = 0.493
+anchor_top = 0.136
+anchor_right = 0.84
+anchor_bottom = 0.753
+offset_left = 0.0639648
+offset_top = -0.128006
+offset_right = 0.319946
+offset_bottom = 0.0559998
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5oml0")
@@ -51,28 +49,12 @@ anchor_top = 0.87
 anchor_right = 0.667
 anchor_bottom = 0.87
 offset_left = -64.384
-offset_top = -11.7601
+offset_top = -59.76
 offset_right = 64.616
-offset_bottom = 11.2399
+offset_bottom = -36.76
 grow_horizontal = 2
 grow_vertical = 2
 text = "Your inventory"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.167
-anchor_top = 0.87
-anchor_right = 0.167
-anchor_bottom = 0.87
-offset_left = -64.384
-offset_top = -11.7601
-offset_right = 63.616
-offset_bottom = 12.2399
-grow_horizontal = 2
-grow_vertical = 2
-text = "Loot"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="."]
@@ -82,10 +64,10 @@ anchor_left = 0.413
 anchor_top = 0.056
 anchor_right = 0.413
 anchor_bottom = 0.056
-offset_left = -75.776
-offset_top = -20.288
-offset_right = 76.224
-offset_bottom = 19.712
+offset_left = -347.776
+offset_top = 115.712
+offset_right = -195.776
+offset_bottom = 155.712
 text = "Create small item"
 script = ExtResource("3_cxk41")
 
@@ -96,10 +78,10 @@ anchor_left = 0.413
 anchor_top = 0.173
 anchor_right = 0.413
 anchor_bottom = 0.173
-offset_left = -75.776
-offset_top = -40.104
-offset_right = 76.224
-offset_bottom = 39.896
+offset_left = -347.776
+offset_top = 95.896
+offset_right = -195.776
+offset_bottom = 175.896
 text = "Create large item"
 script = ExtResource("3_cxk41")
 item_index = 1
@@ -111,33 +93,14 @@ anchor_left = 0.417
 anchor_top = 0.321
 anchor_right = 0.417
 anchor_bottom = 0.321
-offset_left = -80.384
-offset_top = -40.008
-offset_right = 76.616
-offset_bottom = 39.992
+offset_left = -352.384
+offset_top = 95.992
+offset_right = -195.384
+offset_bottom = 175.992
 text = "Create middle item"
 script = ExtResource("3_cxk41")
 item_index = 2
 
-[node name="ItemList" type="ItemList" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.167
-anchor_top = 0.451
-anchor_right = 0.167
-anchor_bottom = 0.451
-offset_left = -192.384
-offset_top = -228.248
-offset_right = 191.616
-offset_bottom = 227.752
-script = ExtResource("4_4f5k2")
-
-[node name="TileInventory" type="Node" parent="."]
-script = ExtResource("5_7m7qb")
-
 [connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
 [connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
 [connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
-[connection signal="item_activated" from="ItemList" to="ItemList" method="_on_item_activated"]
-[connection signal="item_clicked" from="ItemList" to="ItemList" method="_on_item_clicked"]
-[connection signal="update_inventory" from="TileInventory" to="ItemList" method="_on_inventory_update_inventory"]
