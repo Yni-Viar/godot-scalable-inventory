@@ -47,7 +47,7 @@ func add_item(item_id: int) -> void:
 	item_prefab.mouse_filter = Control.MOUSE_FILTER_STOP
 	item_prefab.connect("gui_input", Callable(self, "on_gui_input").bind(item_prefab))
 	$InventoryPanel.add_child(item_prefab, true)
-	# Place item in prefab
+	# Auto-align item in inventory
 	for i in range($InventoryPanel.max_items.x):
 		for j in range($InventoryPanel.max_items.y):
 			if item_move(item_prefab, Vector2(tile_size.x * i + 8, tile_size.y * j + 8)):
