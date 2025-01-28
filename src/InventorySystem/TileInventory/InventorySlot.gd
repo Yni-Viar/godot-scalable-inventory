@@ -1,17 +1,19 @@
 extends TextureRect
 ## Inventory slot
-## Made by Yni, licensed under Unlicense.
+## Made by Yni, licensed under CC0.
 class_name InventorySlot
 
 ## Item ID
 @export var item_id: int
-## Checks, if the item is ACTUALLY put in the inventory, and is not in the dock
-var first_start: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.double_click && event.is_action_pressed("item_use"):
+			get_parent().use_item(self)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

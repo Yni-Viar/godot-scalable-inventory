@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://b873qhix27cmo"]
+
+[ext_resource type="Script" path="res://InventorySystem/TileInventory/Inventory.gd" id="1_itc8o"]
+[ext_resource type="Script" path="res://InventorySystem/Test.gd" id="2_238v0"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -196.0
+offset_right = 192.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_itc8o")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.413
+anchor_top = 0.056
+anchor_right = 0.413
+anchor_bottom = 0.056
+offset_left = -347.776
+offset_top = 115.712
+offset_right = -195.776
+offset_bottom = 155.712
+text = "Create small item"
+script = ExtResource("2_238v0")
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.413
+anchor_top = 0.173
+anchor_right = 0.413
+anchor_bottom = 0.173
+offset_left = -347.776
+offset_top = 95.896
+offset_right = -195.776
+offset_bottom = 175.896
+text = "Create large item"
+script = ExtResource("2_238v0")
+item_index = 1
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.417
+anchor_top = 0.321
+anchor_right = 0.417
+anchor_bottom = 0.321
+offset_left = -352.384
+offset_top = 95.992
+offset_right = -195.384
+offset_bottom = 175.992
+text = "Create middle item"
+script = ExtResource("2_238v0")
+item_index = 2
+
+[connection signal="pressed" from="Button" to="Button" method="_on_pressed"]
+[connection signal="pressed" from="Button2" to="Button2" method="_on_pressed"]
+[connection signal="pressed" from="Button3" to="Button3" method="_on_pressed"]
