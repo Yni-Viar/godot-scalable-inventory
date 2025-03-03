@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b873qhix27cmo"]
 
-[ext_resource type="Script" path="res://InventorySystem/TileInventory/Inventory.gd" id="1_itc8o"]
-[ext_resource type="Script" path="res://InventorySystem/Test.gd" id="2_238v0"]
+[ext_resource type="Script" uid="uid://dhau6ydwatg13" path="res://InventorySystem/TileInventory/Inventory.gd" id="1_itc8o"]
+[ext_resource type="Script" uid="uid://bsv1w7wjwphea" path="res://InventorySystem/Test.gd" id="2_238v0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
